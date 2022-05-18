@@ -1,0 +1,82 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "Post",
+				"primary": "id",
+				"primaryColumn": "id",
+				"unique": {},
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"nullable": false,
+						"type": "Uuid",
+						"columnType": "uuid"
+					}
+				},
+				"tableName": "post"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Post",
+			"field": {
+				"name": "title",
+				"columnName": "title",
+				"nullable": false,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Post",
+			"field": {
+				"name": "content",
+				"columnName": "content",
+				"nullable": false,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin",
+					"value": {
+						"variables": {},
+						"stages": "*",
+						"entities": {
+							"Post": {
+								"predicates": {},
+								"operations": {
+									"create": {
+										"id": true,
+										"title": true,
+										"content": true
+									},
+									"read": {
+										"id": true,
+										"title": true,
+										"content": true
+									},
+									"update": {
+										"id": true,
+										"title": true,
+										"content": true
+									},
+									"delete": true
+								}
+							}
+						}
+					}
+				}
+			]
+		}
+	]
+}
